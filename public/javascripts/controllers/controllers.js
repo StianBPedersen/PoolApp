@@ -10,16 +10,15 @@ angular.module('pool.controllers', [])
 	.controller('PlayersCtrl', ['$scope', 'Player', 'getPlayers', function($scope, Player, getPlayers) {
 		$scope.players = getPlayers;
 
-		$scope.addPlayer = function() {
-			var name = "Terje";
-			var nickname = "nick";
-
-			Player.save({}, { name: name, nickname: nickname }).$promise.then(function(player) {
-				$scope.players.push(player);
-				toastr.success('Spilleren er lagt til!');
+		$scope.$on('modalNew', function(e, obj) {
+			Player.save({}, obj).$promise.then(function(res) {
+				if(+res.userid > 0) {
+					$scope.players.push(res);
+					toastr.success('Spilleren er lagt til!');	
+				}
 			});
-		};
-
+		});
+		
 		$scope.removePlayer = function(userid) {
 			Player.delete({ userid: userid }).$promise.then(function(res) {
 				if(+res.userid) {	
@@ -31,10 +30,13 @@ angular.module('pool.controllers', [])
 			});
 		};
 
-		$scope.updatePlayer = function(userid) {
-			var name = "Oppdatert";
-			var nickname = "navn";
+		$scope.updatePlayer = function(player) {
+			$scope.modalobj = player;
 
+			console.log($scope.modalobj.name);
+				
+		
+			/*
 			Player.update({ userid: userid }, { name: name, nickname: nickname }).$promise.then(function(res) {
 				if(+res.userid) {
 					Player.query().$promise.then(function(players) {
@@ -43,11 +45,35 @@ angular.module('pool.controllers', [])
 					});
 				}
 			});
+*/
 		};
 	}])
 
 	.controller('GametypeCtrl', ['$scope', 'Gtype', 'getTypes', function($scope, Gtype, getTypes) {
 		$scope.types = getTypes;
+
+		$scope.$on('modalNew', function(e, obj) {
+			Gtype.save({}, obj).$promise.then(function(res) {
+				if(+res.id > 0) {
+					Gtype.query().$promise.then(function(res) {
+						$scope.types = res;
+						toastr.success('Ny spilltype er lagt til!');
+					});
+				}
+			});
+		});
+
+		$scope.deleteGametype = function(id) {
+			Gtype.delete({ id: id }).$promise.then(function(res) {
+				if(+res.id > 0) {
+					Gtype.query().$promise.then(function(res) {
+						$scope.types = res;
+						toastr.success('Spilltypen er slettet.')
+					});
+				}
+			});
+		};
+
 	}])
 
 	.controller('StatsCtrl', ['$scope', function($scope) {

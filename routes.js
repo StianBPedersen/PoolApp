@@ -88,7 +88,33 @@ module.exports = function(app) {
 			return res.json(gametypes);
 			client.end();
 		})
+	});
 
+	app.post('/gametypes', function(req, res) {
+		var query = client.query('INSERT INTO gametype(name) VALUES($1) RETURNING id, name', [req.body.name]);
+		var obj = {};
+
+		query.on('error', function(err) { return res.json(err); });
+		
+		query.on('row', function(row, result) {
+			obj = row;
+		});
+
+		query.on('end', function() {
+			return res.json(obj);
+			client.end();
+		});
+	});
+
+	app.delete('/gametypes/:id', function(req, res) {
+		var query = client.query('DELETE from gametype WHERE id = $1', [req.params.id]);
+
+		query.on('error', function(err) { return res.json(err); });
+
+		query.on('end', function(result) {
+			return res.json({ id: req.params.id });
+			client.end();
+		});
 	});
 }
 

@@ -3,13 +3,33 @@
 		<thead>
 			<tr>
 				<th>Navn</th>
+				<th class="text-right"></th>
 			</tr>
 			<tr ng-repeat="type in types track by $index">
 				<td>{{ type.name }}</td>
+				<td class="text-right"><a ng-click="deleteGametype(type.id)"><i class="fa fa-remove"><i></a></td>
 			</tr>
 		</thead>
 	</table>
 </div>
 <div class="col-md-4">
-	<button ng-click="addGametype();" class="btn btn-default btn-lg btn-block">Legg til spilltype</button>
+	<button data-toggle="modal" data-target="#modalnew" class="btn btn-default btn-lg btn-block">Legg til spilltype</button>
+</div>
+
+<div class="modal fade" modal="new" id="modalnew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+	    	 <h4 class="modal-title">Legg til Spilltype</h4>
+	    </div>
+      <div class="modal-body">
+      	<form class="form-horizontal" name="type">
+      		<input class="form-control" type="text" ng-model="modalobj.name" placeholder="8 ball f.eks" />
+      	</form>
+      </div>
+      <div class="modal-footer">
+    		<button class="btn btn-sm btn-success" ng-click="save();">Legg til</button>
+    	</div>
+     </div>
+  </div>
 </div>
