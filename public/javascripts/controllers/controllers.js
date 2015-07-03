@@ -32,21 +32,8 @@ angular.module('pool.controllers', [])
 
 		$scope.updatePlayer = function(player) {
 			$scope.modalobj = player;
-
-			console.log($scope.modalobj.name);
-				
-		
-			/*
-			Player.update({ userid: userid }, { name: name, nickname: nickname }).$promise.then(function(res) {
-				if(+res.userid) {
-					Player.query().$promise.then(function(players) {
-						$scope.players = players;
-						toastr.success('Spilleren er oppdatert!');
-					});
-				}
-			});
-*/
 		};
+		
 	}])
 
 	.controller('GametypeCtrl', ['$scope', 'Gtype', 'getTypes', function($scope, Gtype, getTypes) {

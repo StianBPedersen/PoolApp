@@ -7,7 +7,7 @@
 			</tr>
 			<tr ng-repeat="type in types track by $index">
 				<td>{{ type.name }}</td>
-				<td class="text-right"><a ng-click="deleteGametype(type.id)"><i class="fa fa-remove"><i></a></td>
+				<td class="text-right"><a confirm="deleteGametype(type.id)" confirm-popup-message="Er du sikker på at du vil slette spillet?"><i class="fa fa-remove"><i></a></td>
 			</tr>
 		</thead>
 	</table>

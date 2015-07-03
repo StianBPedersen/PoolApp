@@ -6,15 +6,17 @@
 				<th>Nick</th>
 				<th>Vinn</th>
 				<th>Tap</th>
+				<th class="text-right"></th>
 			</tr>
 			<tr ng-repeat="player in players track by $index">
 				<td>
-					<strong>{{ player.name }}</strong><br />
-					<a data-toggle="modal" data-target="#modaledit" ng-click="updatePlayer(player)"><small>rediger</small></a>&nbsp;|&nbsp;<a ng-click="removePlayer(player.userid)"><small>slett</small></a>
+					<strong>{{ player.name }}</strong>&nbsp;
+					<a data-toggle="modal" data-target="#modaledit" ng-click="updatePlayer(player)"><small>rediger</small></a>
 				</td>
 				<td>{{ player.nickname }}</td>
 				<td>{{ player.wins || 0 }}</td>
 				<td>{{ player.losses || 0 }}</td>
+				<td class="text-right"><a confirm="removePlayer(player.userid)" confirm-popup-message="Er du sikker på at du vil slette spilleren?"><i class="fa fa-remove"></i></a></td>
 			</tr>
 		</thead>
 	</table>
