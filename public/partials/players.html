@@ -2,19 +2,23 @@
 	<table class="table table condensed">
 		<thead>
 			<tr>
-				<th>Name</th>
-				<th>Nickname</th>
-				<th class="text-right"></th>
+				<th>Navn</th>
+				<th>Nick</th>
+				<th>Vinn</th>
+				<th>Tap</th>
 			</tr>
 			<tr ng-repeat="player in players track by $index">
-				<td>{{ player.name }}</td>
+				<td>
+					<strong>{{ player.name }}</strong><br />
+					<a ng-click="updatePlayer(player.userid)"><small>rediger</small></a>&nbsp;|&nbsp;<a ng-click="removePlayer(player.userid)"><small>slett</small></a>
+				</td>
 				<td>{{ player.nickname }}</td>
-				<td class="text-right"><a ng-click="removePlayer(player.userid)">Slett</a></td>
+				<td>{{ player.wins || 0 }}</td>
+				<td>{{ player.losses || 0 }}</td>
 			</tr>
 		</thead>
 	</table>
 </div>
 <div class="col-md-4">
-	<button ng-click="addPlayer();" class="btn btn-default btn-block">Legg til spiller</button>
-	<button ng-click="updatePlayer(27);" class="btn btn-default btn-block">Oppdater spiller</button>
+	<button ng-click="addPlayer();" class="btn btn-default btn-lg btn-block">Legg til spiller</button>
 </div>

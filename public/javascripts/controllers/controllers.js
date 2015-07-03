@@ -44,7 +44,12 @@ angular.module('pool.controllers', [])
 				}
 			});
 		};
-		
-	
+	}])
 
+	.controller('GametypeCtrl', ['$scope', 'Gtype', 'getTypes', function($scope, Gtype, getTypes) {
+		$scope.types = getTypes;
+	}])
+
+	.controller('StatsCtrl', ['$scope', function($scope) {
+		
 	}]);

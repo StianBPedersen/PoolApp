@@ -20,15 +20,22 @@ angular.module('pool.routes', [])
 				}
 			})
 
-			.state('gametypes', {
-				url: '/gametypes',
-				templateUrl: '/partials/gametypes.html',
-				controller: 'GametypesCtrl',
+			.state('gametype', {
+				url: '/gametype',
+				templateUrl: '/partials/gametype.html',
+				controller: 'GametypeCtrl',
 				resolve: {
-					getPlayers: ['Gtype', function(GTypes) {
+					getTypes: ['Gtype', function(Gtype) {
 						return Gtype.query().$promise;
 					}]
 				}
+			})
+
+			.state('stats', {
+				url: '/stats',
+				templateUrl: '/partials/stats.html',
+				controller: 'StatsCtrl'
 			});
+
 
 	}]);
