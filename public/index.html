@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="no" ng-app="pool">
+<head>
+	<meta charset="UTF-8">
+	<title>Pool</title>
+	<link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="lib/toastr/toastr.min.css" />
+	<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top" ng-controller="MenuCtrl">
+    <div class="container">
+       <div class="row">
+        <a class="navbar-brand" ui-sref="index">
+          Biljard
+        </a>
+        <ul id="nav" class="pull-right nav navbar-nav">
+        	<li ui-sref-active="active"><a ui-sref="types">Spilletyper</a></li>
+          <li ui-sref-active="active"><a ui-sref="players">Spillere</a></li>
+         </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+  	<div class="row">
+  		<ui-view></ui-view>
+  	</div>
+  </div>
+
+	
+	<script src="lib/jquery/dist/jquery.min.js"></script>
+	<script src="lib/angular/angular.min.js"></script>
+	<script src="lib/angular-resource/angular-resource.min.js"></script>
+	<script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script src="lib/toastr/toastr.min.js"></script>
+	<script src="javascripts/app.js"></script>
+	<script src="javascripts/routes.js"></script>
+	<script src="javascripts/controllers/controllers.js"></script>
+	<script src="javascripts/services/services.js"></script>
+	<script src="javascripts/directives/directives.js"></script>
+	<script src="javascripts/filters/filters.js"></script>
+	
+</body>
+</html>

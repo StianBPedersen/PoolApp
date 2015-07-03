@@ -1,0 +1,20 @@
+<div class="col-md-8">
+	<table class="table table condensed">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Nickname</th>
+				<th class="text-right"></th>
+			</tr>
+			<tr ng-repeat="player in players track by $index">
+				<td>{{ player.name }}</td>
+				<td>{{ player.nickname }}</td>
+				<td class="text-right"><a ng-click="removePlayer(player.userid)">Slett</a></td>
+			</tr>
+		</thead>
+	</table>
+</div>
+<div class="col-md-4">
+	<button ng-click="addPlayer();" class="btn btn-default btn-block">Legg til spiller</button>
+	<button ng-click="updatePlayer(27);" class="btn btn-default btn-block">Oppdater spiller</button>
+</div>
