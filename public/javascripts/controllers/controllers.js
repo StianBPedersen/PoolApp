@@ -11,7 +11,11 @@ angular.module('pool.controllers', [])
 
 		$scope.$on('modalNew', function(e, obj) {
 			Game.save({}, obj).$promise.then(function(res) {
-				$scope.games.push(res);
+				if(+res.gameid > 0) {
+					Game.query().$promise.then(function(res) {
+						$scope.games = res;
+					});
+				}
 			});
 		});
 
@@ -33,6 +37,10 @@ angular.module('pool.controllers', [])
 				if(+res.id > 0) {
 					toastr.success('Lagret!')
 					players = null;
+
+					Game.query().$promise.then(function(res) {
+						$scope.games = res;
+					});
 				}
 			})
 		});

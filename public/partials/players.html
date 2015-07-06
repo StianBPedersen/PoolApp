@@ -1,17 +1,18 @@
-<div class="col-md-8">
-	<table class="table table condensed">
+<div class="col-md-9">
+	<h1 class="page-header">Spillere</h1>
+  <table class="table table-condensed">
 		<thead>
 			<tr>
 				<th>Navn</th>
 				<th>Nick</th>
 				<th>Vinn</th>
 				<th>Tap</th>
-				<th class="text-right"></th>
+				<th class="text-right">Slett</th>
 			</tr>
-			<tr ng-repeat="player in players track by $index">
+			<tr ng-repeat="player in players track by $index" ng-class="{ active: +($index % 2 === 0)}">
 				<td>
 					<strong>{{ player.name }}</strong>&nbsp;
-					<a data-toggle="modal" data-target="#modaledit" ng-click="updatePlayer(player)"><small>rediger</small></a>
+					<a data-toggle="modal" data-target="#modaledit" ng-click="updatePlayer(player)"><small><i class="fa fa-edit"></i></small></a>
 				</td>
 				<td>{{ player.nickname }}</td>
 				<td>{{ player.wins || 0 }}</td>
@@ -21,15 +22,15 @@
 		</thead>
 	</table>
 </div>
-<div class="col-md-4">
-	<button data-toggle="modal" data-target="#modalnew" class="btn btn-default btn-lg btn-block">Legg til spiller</button>
+<div class="col-md-3 margin-top">
+	<button data-toggle="modal" data-target="#modalnew" class="btn btn-success btn-lg btn-block">Legg til spiller</button>
 </div>
 
 <div class="modal fade" modal="new" id="modalnew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-	    	 <h4 class="modal-title">Legg til Spiller</h4>
+	    	 <h3 class="modal-title">Legg til Spiller</h3>
 	    </div>
       <div class="modal-body">
       	<form class="form-horizontal" name="player">
@@ -46,7 +47,7 @@
       	</form>
       </div>
       <div class="modal-footer">
-    		<button class="btn btn-sm btn-success" ng-click="save();">Legg til</button>
+    		<button class="btn btn-sm btn-default" ng-click="save();">Lagre</button>
     	</div>
      </div>
   </div>
@@ -56,7 +57,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-	    	 <h4 class="modal-title">Rediger spiller</h4>
+	    	 <h3 class="modal-title">Rediger spiller</h3>
 	    </div>
       <div class="modal-body">
       	<form class="form-horizontal" name="player">
@@ -73,7 +74,7 @@
       	</form>
       </div>
       <div class="modal-footer">
-    		<button class="btn btn-sm btn-success" ng-click="save();">Legg til</button>
+    		<button class="btn btn-sm btn-default" ng-click="save();">Lagre</button>
     	</div>
      </div>
   </div>

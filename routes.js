@@ -1,5 +1,6 @@
 var pg = require('pg');
 var bodyParser = require('body-parser');
+var dbHelper = require('./db-helper');
 
 var conn = "postgres://pool_usr:pool_usr@localhost/pool"
 var Client = require('pg').Client;
@@ -125,7 +126,7 @@ module.exports = function(app) {
 
 	app.post('/games', function(req, res) {
 		var obj = {};
-		var query = client.query('INSERT INTO game(player1, player2, gametype, distance, created_at) VALUES($1,$2,$3,$4,now()) RETURNING player1, player2, gametype, distance', 
+		var query = client.query('INSERT INTO game(player1, player2, gametype, distance, created_at) VALUES($1,$2,$3,$4,now()) RETURNING gameid', 
 			[req.body.player1, req.body.player2, req.body.gametype, req.body.distance]);
 
 		query.on('error', function(err) { return res.json(err); });
@@ -142,12 +143,7 @@ module.exports = function(app) {
 
 	app.get('/games', function(req, res) {
 		var games = [];
-		var db_str = 'SELECT a.gameid, (select name from player where userid = a.player1) AS player1, (select userid from player where userid = a.player1) AS player1_id, (select name from player where userid = a.player2) AS player2, (select userid from player where userid = a.player2) AS player2_id, a.distance, b.name AS gametype, a.created_at '+
-								 'FROM game AS a '+
-								 'INNER JOIN gametype AS b ON a.gametype = b.id '+
-								 'LEFT OUTER JOIN player AS c ON a.player1 = c.userid '+
-								 'AND a.player2 = c.userid '+
-								 'ORDER BY a.gameid DESC';
+		var db_str = dbHelper.getGames();
 
 		var query = client.query(db_str);
 
@@ -167,21 +163,21 @@ module.exports = function(app) {
 
 /********************************************************************* RESULT ********************************************************************/
 
-app.post('/results/:gameid', function(req, res) {
-	var obj = {};
-	var query = client.query('INSERT INTO result(gameid, winner) VALUES($1,$2) RETURNING id', [req.params.gameid, req.body.winner.userid]);
+	app.post('/results/:gameid', function(req, res) {
+		var obj = {};
+		var query = client.query('INSERT INTO result(gameid, winner) VALUES($1,$2) RETURNING id', [req.params.gameid, req.body.winner.userid]);
 
-	query.on('error', function(err) { return res.json(err) });
+		query.on('error', function(err) { return res.json(err) });
 
-	query.on('row', function(row, result) {
-		obj = row;
+		query.on('row', function(row, result) {
+			obj = row;
+		});
+
+		query.on('end', function(result) {
+			return res.json(obj);
+			client.end();
+		});
 	});
-
-	query.on('end', function(result) {
-		return res.json(obj);
-		client.end();
-	});
-});
 
 /********************************************************************* END RESULT ****************************************************************/
 

@@ -1,26 +1,27 @@
-<div class="col-md-8">
-	<table class="table table condensed">
+<div class="col-md-9">
+	<h1 class="page-header">Spilltype</h1>
+	<table class="table table-condensed table">
 		<thead>
 			<tr>
 				<th>Navn</th>
-				<th class="text-right"></th>
+				<th class="text-right">Slett</th>
 			</tr>
-			<tr ng-repeat="type in types track by $index">
+			<tr ng-repeat="type in types track by $index" ng-class="{ active: +($index % 2) == 0 }">
 				<td>{{ type.name }}</td>
 				<td class="text-right"><a confirm="deleteGametype(type.id)" confirm-popup-message="Er du sikker på at du vil slette spillet?"><i class="fa fa-remove"><i></a></td>
 			</tr>
 		</thead>
 	</table>
 </div>
-<div class="col-md-4">
-	<button data-toggle="modal" data-target="#modalnew" class="btn btn-default btn-lg btn-block">Legg til spilltype</button>
+<div class="col-md-3 margin-top">
+	<button data-toggle="modal" data-target="#modalnew" class="btn btn-success btn-lg btn-block">Legg til spilltype</button>
 </div>
 
 <div class="modal fade" modal="new" id="modalnew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-	    	 <h4 class="modal-title">Legg til Spilltype</h4>
+	    	 <h3 class="modal-title">Legg til Spilltype</h3>
 	    </div>
       <div class="modal-body">
       	<form class="form-horizontal" name="type">
@@ -28,7 +29,7 @@
       	</form>
       </div>
       <div class="modal-footer">
-    		<button class="btn btn-sm btn-success" ng-click="save();">Legg til</button>
+    		<button class="btn btn-sm btn-default" ng-click="save();">Legg til</button>
     	</div>
      </div>
   </div>
