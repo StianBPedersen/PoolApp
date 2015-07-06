@@ -34,31 +34,31 @@
 	    	 <h3 class="modal-title">Ny kamp</h3>
 	    </div>
       <div class="modal-body">
-      	<form class="form-horizontal" name="player">
+      	<form class="form-horizontal" name="game">
       		<div class="form-group">
       			<div class="col-md-12">
-      				<select class="form-control" ng-model="modalobj.gametype" ng-options="type.id as type.name for type in types track by type.id">
+      				<select required class="form-control" ng-model="modalobj.gametype" ng-options="type.id as type.name for type in types track by type.id">
                 <option style="display:none" value="">Velg Spilltype</option>
               </select>
           	</div>
           </div>
       		<div class="form-group">
       			<div class="col-md-12">
-      				<select class="form-control" type="text" ng-model="modalobj.player1" ng-options="player.userid as player.name for player in players track by player.userid">
+      				<select required class="form-control" type="text" ng-model="modalobj.player1" ng-options="player.userid as player.name for player in players track by player.userid">
                 <option style="display:none" value="">Velg Spiller1</option>    
               </select>
       			</div>
        		</div>
        		<div class="form-group">
        			<div class="col-md-12">
-      				<select class="form-control" ng-model="modalobj.player2" ng-options="player.userid as player.name for player in players track by player.userid">
+      				<select required class="form-control" ng-model="modalobj.player2" ng-options="player.userid as player.name for player in players track by player.userid">
                 <option style="display:none" value="">Velg Spiller2</option>  
               </select>
       			</div>
        		</div>
           <div class="form-group">
             <div class="col-md-12">
-              <select class="form-control" ng-model="modalobj.distance" ng-options="n for n in [] | range:1:21">
+              <select required class="form-control" ng-model="modalobj.distance" ng-options="n for n in [] | range:1:21">
                 <option style="display:none" value="">Velg Distanse</option>  
               </select>
             </div>
@@ -66,7 +66,7 @@
       	</form>
       </div>
       <div class="modal-footer">
-    		<button class="btn btn-sm btn-default" ng-click="save();">Opprett</button>
+    		<button class="btn btn-sm btn-default" ng-disabled="game.$invalid" ng-click="save();">Opprett</button>
     	</div>
      </div>
   </div>
@@ -79,7 +79,7 @@
          <h3 class="modal-title">Legg til vinner</h3>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal" name="player">
+        <form class="form-horizontal" name="game">
           <div class="form-group">
             <div class="col-md-12">
               <select class="form-control" ng-model="modalobj.winner" ng-options="player.userid as player.name for player in modalobj.players track by player.userid">
@@ -90,7 +90,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-sm btn-default" ng-click="save();">Lagre</button>
+        <button class="btn btn-sm btn-default" ng-disabled="game.$pristine" ng-click="save();">Lagre</button>
       </div>
      </div>
   </div>

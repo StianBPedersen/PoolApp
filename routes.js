@@ -165,7 +165,7 @@ module.exports = function(app) {
 
 	app.post('/results/:gameid', function(req, res) {
 		var obj = {};
-		var query = client.query('INSERT INTO result(gameid, winner) VALUES($1,$2) RETURNING id', [req.params.gameid, req.body.winner.userid]);
+		var query = client.query('INSERT INTO result(gameid, winner) VALUES($1,$2) RETURNING id', [req.params.gameid, req.body.winner]);
 
 		query.on('error', function(err) { return res.json(err) });
 

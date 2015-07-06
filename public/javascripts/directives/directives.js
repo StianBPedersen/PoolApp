@@ -34,8 +34,7 @@ angular.module('pool.directives', [])
 				};
 
 				scope.updateScore = function() {
-					console.log(scope.modalobj)
-					//scope.$emit('modalUpdateScore', scope.modalobj);
+					scope.$emit('modalUpdateScore', scope.modalobj);
 				};
 				
 				scope.save = function() {

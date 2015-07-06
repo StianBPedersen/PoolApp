@@ -19,18 +19,18 @@
 
 <div class="modal fade" modal="new" id="modalnew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
   <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-	    	 <h3 class="modal-title">Legg til Spilltype</h3>
-	    </div>
-      <div class="modal-body">
-      	<form class="form-horizontal" name="type">
-      		<input class="form-control" type="text" ng-model="modalobj.name" placeholder="8 ball f.eks" />
-      	</form>
-      </div>
-      <div class="modal-footer">
-    		<button class="btn btn-sm btn-default" ng-click="save();">Legg til</button>
-    	</div>
+  	<form class="form-horizontal" name="type">
+	    <div class="modal-content">
+	      <div class="modal-header">
+		    	 <h3 class="modal-title">Legg til Spilltype</h3>
+		    </div>
+	      <div class="modal-body">
+	     		<input class="form-control" type="text" ng-model="modalobj.name" placeholder="8 ball f.eks" />
+	      </div>
+	      <div class="modal-footer">
+	    		<button class="btn btn-sm btn-default" ng-disabled="type.$pristine" ng-click="save();">Legg til</button>
+	    	</div>
      </div>
+    </form>
   </div>
 </div>

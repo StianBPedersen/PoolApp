@@ -26,7 +26,7 @@ angular.module('pool.controllers', [])
 			];
 
 			$scope.modalobj = {
-				winner: players[0],
+				winner: null,
 				players: players,
 				gameid: obj.gameid
 			};
@@ -73,6 +73,15 @@ angular.module('pool.controllers', [])
 		$scope.updatePlayer = function(player) {
 			$scope.modalobj = player;
 		};
+
+		$scope.$on('modalUpdate', function(e, obj) {
+			Player.update({ userid: obj.userid }, obj).$promise.then(function(res) {
+				Player.query().$promise.then(function(res) {
+					$scope.players = res;
+					toastr.success('Spilleren er oppdatert!');
+				});
+			});
+		});
 		
 	}])
 

@@ -36,18 +36,18 @@
       	<form class="form-horizontal" name="player">
       		<div class="form-group">
       			<div class="col-md-12">
-      				<input class="form-control" type="text" ng-model="modalobj.name" placeholder="Navn" />
+      				<input class="form-control" type="text" required ng-model="modalobj.name" placeholder="Navn" />
       			</div>
       		</div>
       		<div class="form-group">
       			<div class="col-md-12">
-      				<input class="form-control" type="text" ng-model="modalobj.nickname" placeholder="Nick" />
+      				<input class="form-control" type="text" required ng-model="modalobj.nickname" placeholder="Nick" />
       			</div>
        		</div>
       	</form>
       </div>
       <div class="modal-footer">
-    		<button class="btn btn-sm btn-default" ng-click="save();">Lagre</button>
+    		<button class="btn btn-sm btn-default" ng-disabled="player.$invalid" ng-click="save();">Lagre</button>
     	</div>
      </div>
   </div>
@@ -74,7 +74,7 @@
       	</form>
       </div>
       <div class="modal-footer">
-    		<button class="btn btn-sm btn-default" ng-click="save();">Lagre</button>
+    		<button class="btn btn-sm btn-default" ng-disabled="player.$pristine" ng-click="save();">Lagre</button>
     	</div>
      </div>
   </div>
