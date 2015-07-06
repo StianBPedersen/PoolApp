@@ -5,16 +5,17 @@ angular.module('pool.directives', [])
 			scope: true,
 			link: function(scope, element, attrs) {
 			
-				if(attrs.modal === 'new') {
-					scope.modalobj = {};
-				}
+				if(attrs.modal === 'new') { scope.modalobj = {}; }
 
 				scope.dismiss = function() {
 					if(attrs.modal === 'new') {
 						scope.create();
 					}else if(attrs.modal === 'edit') {
 						scope.update();
+					}else if(attrs.modal === 'updateScore') {
+						scope.updateScore();
 					}
+					
 					element.modal('hide');
 				};
 
@@ -31,6 +32,10 @@ angular.module('pool.directives', [])
 					scope.$emit('modalUpdate', scope.modalobj);
 					scope.modalobj = null;
 				};
+
+				scope.updateScore = function() {
+					scope.$emit('modalUpdateScore', scope.modalobj);
+				};
 				
 				scope.save = function() {
 					if(attrs.modal === 'new') {
@@ -38,6 +43,9 @@ angular.module('pool.directives', [])
 						element.modal('hide');
 					}else if(attrs.modal === 'edit') {
 						scope.update();
+						element.modal('hide');
+					}else if(attrs.modal === 'updateScore') {
+						scope.updateScore();
 						element.modal('hide');
 					}
 				};

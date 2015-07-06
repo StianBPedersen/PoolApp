@@ -3,7 +3,39 @@ angular.module('pool.controllers', [])
 
 	}])
 
-	.controller('IndexCtrl', ['$scope', function($scope) {
+	.controller('IndexCtrl', ['$scope', 'Game', 'Result', 'getPlayers', 'getTypes', 'getGames', function($scope, Game, Result, getPlayers, getTypes, getGames) {
+		$scope.players = getPlayers;
+		$scope.types = getTypes;
+		$scope.games = getGames;
+		var players;
+
+		$scope.$on('modalNew', function(e, obj) {
+			Game.save({}, obj).$promise.then(function(res) {
+				$scope.games.push(res);
+			});
+		});
+
+		$scope.populatePlayers = function(obj) {
+			players = [
+				{ userid: obj.player1_id, name: obj.player1  }, 
+				{ userid: obj.player2_id, name: obj.player2  }
+			];
+
+			$scope.modalobj = {
+				winner: players[0],
+				players: players,
+				gameid: obj.gameid
+			};
+		};
+
+		$scope.$on('modalUpdateScore', function(e, obj) {
+			Result.save({}, obj).$promise.then(function(res) {
+				if(+res.id > 0) {
+					toastr.success('Lagret!')
+					players = null;
+				}
+			})
+		});
 
 	}])
 

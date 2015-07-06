@@ -1,8 +1,10 @@
 var express = require('express');
 var app = express();
+var morgan = require('morgan');
 require('./routes')(app);
 
 app.use(express.static('public'));
+app.use(morgan('dev'));
 
 var server = app.listen(3000, function() {
 	var host = server.address().address;

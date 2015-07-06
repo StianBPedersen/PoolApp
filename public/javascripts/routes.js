@@ -6,7 +6,18 @@ angular.module('pool.routes', [])
 			.state('index', {
 				url: '/index',
 				templateUrl: '/partials/index.html',
-				controller: 'IndexCtrl'
+				controller: 'IndexCtrl',
+				resolve: { 
+					getPlayers: ['Player', function(Player) {
+						return Player.query().$promise;
+					}],
+					getTypes: ['Gtype', function(Gtype) {
+						return Gtype.query().$promise;
+					}],
+					getGames: ['Game', function(Game) {
+						return Game.query().$promise;
+					}]
+				}
 			})
 
 			.state('players', {

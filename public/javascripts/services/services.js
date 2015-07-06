@@ -9,4 +9,17 @@ angular.module('pool.services', [])
 		return $resource('/gametypes/:id', { id:'@id' }, {
 			update: { method: 'PUT' }
 		});
+	}])
+
+	.factory('Game', ['$resource', function($resource) {
+		return $resource('/games/:id', { id:'@id' }, {
+			update: { method: 'PUT' }
+		});
+	}])
+
+	.factory('Result', ['$resource', function($resource) {
+		return $resource('/results/:gameid', { gameid:'@gameid' }, {
+			update: { method: 'PUT' }
+		})
 	}]);
+
