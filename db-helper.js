@@ -1,6 +1,14 @@
 
 module.exports.getGames = function() {
-	str = 'SELECT (SELECT count(0) FROM result WHERE gameid = a.gameid) AS gamesplayed, a.gameid, (select name from player where userid = a.player1) AS player1, (select userid from player where userid = a.player1) AS player1_id, (select name from player where userid = a.player2) AS player2, (select userid from player where userid = a.player2) AS player2_id, a.distance, b.name AS gametype, a.created_at '+
+	str = 'SELECT '+
+				'(SELECT count(0) FROM result WHERE gameid = a.gameid AND winner = a.player1) AS player1_wins, '+
+				'(SELECT count(0) FROM result WHERE gameid = a.gameid AND winner = a.player2) AS player2_wins, '+
+				'(SELECT count(0) FROM result WHERE gameid = a.gameid) AS gamesplayed, '+
+				'(SELECT name from player where userid = a.player1) AS player1, '+
+				'(SELECT userid from player where userid = a.player1) AS player1_id, '+
+				'(SELECT name from player where userid = a.player2) AS player2, '+
+				'(SELECT userid from player where userid = a.player2) AS player2_id, '+
+				'a.gameid, a.distance, b.name AS gametype, a.created_at '+
 				'FROM game AS a '+
 				'INNER JOIN gametype AS b ON a.gametype = b.id '+
 				'LEFT OUTER JOIN player AS c ON a.player1 = c.userid '+
@@ -9,5 +17,4 @@ module.exports.getGames = function() {
 				'ORDER BY a.gameid DESC';
 				
 	return str;
-	
 }

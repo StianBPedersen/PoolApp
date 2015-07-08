@@ -46,6 +46,12 @@ angular.module('pool.routes', [])
 				url: '/stats',
 				templateUrl: '/partials/stats.html',
 				controller: 'StatsCtrl'
+			})
+
+			.state('style', {
+				url: '/style',
+				templateUrl: '/partials/style.html',
+				controller: 'StyleCtrl'
 			});
 
 

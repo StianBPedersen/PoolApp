@@ -1,4 +1,4 @@
-html { height: 100%;background: url('/img/back.jpg') bottom center no-repeat;width: 100%; }
+html { height: 100%;background: url('/img/back.jpg') no-repeat fixed bottom center;width: 100%; }
 body { padding-top: 80px;height:100%;background: rgba(236,237,232, .85); }
 h1,h2,h3,h4,h5,h6 { font-weight: 100; }
 a, a:hover { cursor:pointer; }
@@ -13,11 +13,11 @@ a { color: #224a42; }
 
 .navbar-inverse { 
 	border-color: #fff;
-	background-color: #224a42;
+	background-color: transparent;
 }
 
 .navbar-inverse .navbar-nav>li>a {
-	color:#fff;
+	color:#000;
 }
 
 .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
@@ -33,7 +33,12 @@ a { color: #224a42; }
 }
 
 /* BUTTONS */
-.btn-success, .btn-success.active, .btn-success.focus, .btn-success:active, .btn-success:focus, .btn-success:active:focus { color: #fff;background-color: #bebebe;border-color: #eee;}
-.btn-success:hover { color: #bebebe;background-color: #fff;border-color: #eee; }
+.btn-success, .btn-success.active, .btn-success.focus, .btn-success:active, .btn-success:focus, .btn-success:active:focus { color: #000;background-color: rgba(255,255,255,.2);border-color: #eee;}
+.btn-success:hover { color: #000;background-color: transparent;border-color: #eee; }
+
+
+
+
+
 
  

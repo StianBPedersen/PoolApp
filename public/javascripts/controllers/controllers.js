@@ -1,19 +1,36 @@
-angular.module('pool.controllers', [])
+angular.module('pool.controllers', ['ngTable'])
 	.controller('MenuCtrl', ['$scope', function($scope) {
 
 	}])
 
-	.controller('IndexCtrl', ['$scope', 'Game', 'Result', 'getPlayers', 'getTypes', 'getGames', function($scope, Game, Result, getPlayers, getTypes, getGames) {
+	.controller('IndexCtrl', ['$scope', 'ngTableParams', '$filter', '$location', 'Game', 'Result', 'getPlayers', 'getTypes', 'getGames', function($scope, ngTableParams, $filter, $location, Game, Result, getPlayers, getTypes, getGames) {
 		$scope.players = getPlayers;
 		$scope.types = getTypes;
 		$scope.games = getGames;
 		var players;
+
+		$scope.tableParams = new ngTableParams({
+			page: 1,
+			count: 10,
+			sorting: { created_at: 'desc' }
+		},{
+			total: 0, // length of data
+			getData: function($defer, params) {
+				$location.search(params.url());
+				if (angular.isDefined($scope.games)) {
+					var orderedData = $filter('orderBy')($scope.games, params.orderBy());
+					params.total(orderedData.length);
+					$defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+				}
+			}
+		});
 
 		$scope.$on('modalNew', function(e, obj) {
 			Game.save({}, obj).$promise.then(function(res) {
 				if(+res.gameid > 0) {
 					Game.query().$promise.then(function(res) {
 						$scope.games = res;
+						$scope.tableParams.reload();
 					});
 				}
 			});
@@ -40,6 +57,7 @@ angular.module('pool.controllers', [])
 
 					Game.query().$promise.then(function(res) {
 						$scope.games = res;
+						$scope.tableParams.reload();
 					});
 				}
 			})
@@ -47,13 +65,30 @@ angular.module('pool.controllers', [])
 
 	}])
 
-	.controller('PlayersCtrl', ['$scope', 'Player', 'getPlayers', function($scope, Player, getPlayers) {
+	.controller('PlayersCtrl', ['$scope', 'ngTableParams', '$location', '$filter', 'Player', 'getPlayers', function($scope, ngTableParams, $location, $filter, Player, getPlayers) {
 		$scope.players = getPlayers;
+
+		$scope.tableParams = new ngTableParams({
+			page: 1,
+			count: 10,
+			sorting: { name: 'asc' }
+		},{
+			total: 0, // length of data
+			getData: function($defer, params) {
+				$location.search(params.url());
+				if (angular.isDefined($scope.players)) {
+					var orderedData = $filter('orderBy')($scope.players, params.orderBy());
+					params.total(orderedData.length);
+					$defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+				}
+			}
+		});
 
 		$scope.$on('modalNew', function(e, obj) {
 			Player.save({}, obj).$promise.then(function(res) {
 				if(+res.userid > 0) {
 					$scope.players.push(res);
+					$scope.tableParams.reload();
 					toastr.success('Spilleren er lagt til!');	
 				}
 			});
@@ -78,6 +113,7 @@ angular.module('pool.controllers', [])
 			Player.update({ userid: obj.userid }, obj).$promise.then(function(res) {
 				Player.query().$promise.then(function(res) {
 					$scope.players = res;
+					$scope.tableParams.reload();
 					toastr.success('Spilleren er oppdatert!');
 				});
 			});
@@ -114,4 +150,16 @@ angular.module('pool.controllers', [])
 
 	.controller('StatsCtrl', ['$scope', function($scope) {
 		
-	}]);
+	}])
+
+	.controller('StyleCtrl', ['$scope', function($scope) {
+
+	}])
+
+
+
+
+
+
+
+

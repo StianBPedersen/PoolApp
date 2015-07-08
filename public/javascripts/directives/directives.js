@@ -30,7 +30,6 @@ angular.module('pool.directives', [])
 
 				scope.update = function() {
 					scope.$emit('modalUpdate', scope.modalobj);
-					scope.modalobj = null;
 				};
 
 				scope.updateScore = function() {
@@ -71,17 +70,17 @@ angular.module('pool.directives', [])
 				var panel_id = "confirm_pop" + scope.$id;
 
 				scope.showDialog = function(e) {
-					var popupLeft = 50 - $window.Math.floor((((400 / $window.innerWidth) * 100) / 2));
-					var popupTop = 50 - $window.Math.floor((((200 / $window.innerHeight) * 100) / 2));
+					var popupLeft = 50 - $window.Math.floor((((500 / $window.innerWidth) * 100) / 2));
+					var popupTop = 50 - $window.Math.floor((((300 / $window.innerHeight) * 100) / 2));
 
-					var pop = '<div id="'+panel_id+'" style="width: 400px;position:fixed;top: '+popupTop+'%;left:'+popupLeft+'%;z-index: 99999999;box-shadow: 0 0 0 1000px rgba(0,0,0,.9);" class="panel panel-default">' +
-											'<div class="panel-heading" style="background-color:#fff;">' +
-												'<h3 class="panel-title">Bekreft</h3>' +
-											'</div>' +
-											'<div class="panel-body">'+scope.message+'</div>' +
-											'<div class="panel-footer clearfix" style="background-color: #fff;">' +
-												'<a class="btn btn-info pull-right" id="confirm_popup_yes">Bekreft</a>' +
-												'<a style="margin-right: 15px;" class="btn btn-default pull-right" id="confirm_popup_no">Avbryt</a>' +
+					var pop = '<div id="'+panel_id+'" style="top: '+popupTop+'%;left:'+popupLeft+'%;" class="panel panel-popup panel-default">' +
+											'<div class="panel-body">'+
+												'<button type="button" id="confirm_popup_no2" class="close"><span aria-hidden="true">&times;</span></button>'+
+												'<p><i class="fa fa-trash-o fa-4"></i></p>'+
+												'<p class="msg">'+scope.message+'</p>'+
+												'<a class="btn btn-default" id="confirm_popup_no">Cancel</a>' +
+												'<span class="divider"></span>'+
+												'<a class="btn btn-danger" id="confirm_popup_yes">Delete</a>' +
 											'</div>' +
 										'</div>';
 
@@ -94,6 +93,10 @@ angular.module('pool.directives', [])
 				});
 
 				$('body').on('click', '#confirm_popup_no', function() {
+					$('#'+panel_id).remove();
+				});
+
+				$('body').on('click', '#confirm_popup_no2', function() {
 					$('#'+panel_id).remove();
 				});
 				

@@ -8,13 +8,13 @@
 			</tr>
 			<tr ng-repeat="type in types track by $index" ng-class="{ active: +($index % 2) == 0 }">
 				<td>{{ type.name }}</td>
-				<td class="text-right"><a confirm="deleteGametype(type.id)" confirm-popup-message="Er du sikker på at du vil slette spillet?"><i class="fa fa-remove"><i></a></td>
+				<td class="text-right"><a class="text-danger" confirm="deleteGametype(type.id)" confirm-popup-message="Er du sikker på at du vil slette spillet?"><i class="fa fa-remove"><i></a></td>
 			</tr>
 		</thead>
 	</table>
 </div>
 <div class="col-md-3 margin-top">
-	<button data-toggle="modal" data-target="#modalnew" class="btn btn-success btn-lg btn-block">Legg til spilltype</button>
+	<button data-toggle="modal" data-target="#modalnew" class="btn btn-success btn-lg btn-block">+Spilltype</button>
 </div>
 
 <div class="modal fade" modal="new" id="modalnew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
