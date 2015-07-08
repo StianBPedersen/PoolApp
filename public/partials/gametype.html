@@ -1,16 +1,18 @@
 <div class="col-md-9">
 	<h1 class="page-header">Spilltype</h1>
-	<table class="table table-condensed table">
+	<table class="table table-condensed table-hover">
 		<thead>
 			<tr>
 				<th>Navn</th>
 				<th class="text-right">Slett</th>
 			</tr>
+		</thead>
+		<tbody>
 			<tr ng-repeat="type in types track by $index" ng-class="{ active: +($index % 2) == 0 }">
 				<td>{{ type.name }}</td>
 				<td class="text-right"><a class="text-danger" confirm="deleteGametype(type.id)" confirm-popup-message="Er du sikker på at du vil slette spillet?"><i class="fa fa-remove"><i></a></td>
 			</tr>
-		</thead>
+		</tbody>
 	</table>
 </div>
 <div class="col-md-3 margin-top">

@@ -1,0 +1,111 @@
+<div class="col-md-9">
+	<button data-target="#test" data-toggle="modal" class="btn btn-default">Modal</button>
+  <button class="btn btn-default" confirm="removePlayer(player.userid)" confirm-popup-message="Er du sikker på at du vil slette?">Are u sure</button>
+  <br /><br />
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="">tab1</a></li>
+    <li><a href="">tab2</a></li>
+    <li><a href="">tab3</a></li>
+    <li><a href="">tab4</a></li>
+    <li><a href="">tab5</a></li>
+  </ul>
+  <br />
+  <table class="table table-hover table-lg">
+    <thead>
+      <tr>
+        <th>Col1</th>
+        <th>Col2</th>
+        <th>Col3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="text-primary text-primary-lg">Welcome newsletter</span></td>
+        <td>row</td>
+        <td><span class="text-lg text-table">12 700 <i class="fa fa-user-plus"></i></span></td>
+      </tr>
+      <tr>
+        <td>row</td>
+        <td>row</td>
+        <td>row</td>
+      </tr>
+      <tr>
+        <td>row</td>
+        <td>row</td>
+        <td>row</td>
+      </tr>
+    </tbody>
+  </table>
+  <br /><br />
+  <form class="form-horizontal">
+    <div class="form-group">
+      <input class="form-control" type="text" value="Det er I som er kongen">
+    </div>
+    <div class="form-group">
+      <label class="control-label">Dette er en label</label>
+    </div>
+    <div class="form-group">
+      <input class="form-control error" type="email">
+      <small class="text-danger">Du må ta deg sammen</small>
+    </div>
+    <div class="form-group">
+      <input class="form-control success" type="email">
+      
+    </div>
+    <div class="form-group">
+      <input class="form-control" type="password">
+    </div>
+    <div class="form-group">
+      <textarea class="form-control" cols="30" rows="10"></textarea>
+    </div>
+    <div class="form-group">
+      <select class="form-control" name="" id="">
+        <option value="1">1</option>
+      </select>
+    </div>
+  </form>
+  <br />
+  <span class="badge">Dette er en default badge</span>
+  <span class="badge badge-info">Dette er en info badge</span>
+  <br />
+  <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, sequi dolor ducimus explicabo placeat, rerum dolorum architecto vero natus veniam doloremque suscipit possimus mollitia numquam totam repudiandae voluptate perspiciatis itaque.</small>
+</div>
+<div class="col-md-3 margin-top">
+	<button class="btn btn-default btn-lg btn-block">Button default</button>
+  <button class="btn btn-success btn-lg btn-block">Button success</button>
+  <button class="btn btn-transparent btn-lg btn-block">Button transparent</button>
+  <button class="btn btn-info btn-lg btn-block">Button info</button>
+  <button class="btn btn-danger btn-lg btn-block">Button danger</button>
+
+  <button class="btn btn-default btn-sm btn-block">Button default</button>
+  <button class="btn btn-success btn-sm btn-block">Button success</button>
+  <button class="btn btn-transparent btn-sm btn-block">Button transparent</button>
+  <button class="btn btn-info btn-sm btn-block">Button info</button>
+  <button class="btn btn-danger btn-sm btn-block">Button danger</button>
+</div>
+
+<div class="modal fade" modal id="test" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+         <h3 class="modal-title">Legg til vinner</h3>
+         <ul class="nav nav-tabs">
+          <li role="presentation" class="active"><a href="#">Home</a></li>
+          <li role="presentation"><a href="#">Profile</a></li>
+          <li role="presentation"><a href="#">Messages</a></li>
+        </ul>
+      </div>
+      <div class="modal-body clearfix">
+        <div class="form-group">
+          <select class="form-control">
+            <option style="display:none" value="">Velg vinner</option>
+          </select>
+        </div>
+        <div class="form-group">
+           <button class="btn pull-right btn-success">Lagre</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

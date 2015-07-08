@@ -13,7 +13,7 @@ a { color: #224a42; }
 
 .navbar-inverse { 
 	border-color: #fff;
-	background-color: transparent;
+	background-color: rgba(212,205,198, 1);
 }
 
 .navbar-inverse .navbar-nav>li>a {
