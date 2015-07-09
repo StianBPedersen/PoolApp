@@ -1,6 +1,6 @@
 angular.module('pool.routes', [])
 	.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-		//$urlRouterProvider.otherwise('index');
+		$urlRouterProvider.otherwise('index');
 
 		$stateProvider
 			.state('index', {
@@ -52,12 +52,5 @@ angular.module('pool.routes', [])
 					}]
 				}
 			})
-
-			.state('style', {
-				url: '/style',
-				templateUrl: '/partials/style.html',
-				controller: 'StyleCtrl'
-			});
-
 
 	}]);

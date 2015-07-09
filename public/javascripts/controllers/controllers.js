@@ -167,12 +167,9 @@ angular.module('pool.controllers', ['ngTable'])
 			}
 		});
 
-	}])
+	}]);
 
-	.controller('StyleCtrl', ['$scope', function($scope) {
-
-	}])
-
+	
 
 
 
