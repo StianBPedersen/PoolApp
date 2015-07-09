@@ -1,7 +1,37 @@
 <div class="col-md-8">
-	kongen
-	
+  <h1 class="page-header">Resultater</h1>
+  <table class="table table-hover" ng-table="tableParams" template-pagination="custom-pager">
+    <tr ng-repeat="game in $data" ng-class="{ active: +($index % 2) === 0}" ng-show="+game.gamesplayed === +game.distance">
+      <td data-title="'Start'" sortable="'created_at'">{{ game.created_at | date:'dd.MM.yyyy' }}</td>
+      <td data-title="'Spiller 1'" sortable="'player1'"><span ng-class="{ 'text-success': +game.player1_wins > +game.player2_wins, 'text-danger': +game.player1_wins < +game.player2_wins }">{{ game.player1 }} ({{ game.player1_wins }})</span></td>
+      <td data-title="'Spiller 2'" sortable="'player2'"><span ng-class="{ 'text-success': +game.player2_wins > +game.player1_wins, 'text-danger': +game.player2_wins < +game.player1_wins }">{{ game.player2 }} ({{ game.player2_wins }})</span></td>
+      <td data-title="'Spilltype'" sortable="'gametype'">{{ game.gametype }}</td>
+      <td data-title="'Distanse'" sortable="'distance'">{{ game.distance }}</td>
+      <td data-title="'Spilt'"><span class="badge">{{ game.gamesplayed }}</span><small>&nbsp;/&nbsp;{{ game.distance }}</small></td>
+      <td class="text-right" data-title="'Vinner'">
+       	<span ng-show="+game.player1_wins > +game.player2_wins">{{ game.player1 }}</span>
+       	<span ng-show="+game.player2_wins > +game.player1_wins">{{ game.player2 }}</span>
+      </td>
+    </tr>
+  </table>
 </div>
 <div class="col-md-4">
-	dekk
+	<div class="well">
+		<h4>Ranking</h4>
+	</div>
 </div>
+
+<script type="text/ng-template" id="custom-pager" >
+  <div class="text-center margin-t-20">
+    <ul class="pagination pagination-sm">
+      <li ng-class="{'disabled': !page.active}" ng-repeat="page in pages" ng-switch="page.type">
+        <a ng-switch-when="prev" ng-click="params.page(page.number)" href="">&laquo;</a>
+        <a ng-switch-when="first" ng-click="params.page(page.number)" href=""><span ng-bind="page.number"></span></a>
+        <a ng-switch-when="page" ng-click="params.page(page.number)" href=""><span ng-bind="page.number"></span></a>
+        <a ng-switch-when="more" ng-click="params.page(page.number)" href="">&#8230;</a>
+        <a ng-switch-when="last" ng-click="params.page(page.number)" href=""><span ng-bind="page.number"></span></a>
+        <a ng-switch-when="next" ng-click="params.page(page.number)" href="">&raquo;</a>
+      </li>
+    </ul>
+  </div>
+</script>

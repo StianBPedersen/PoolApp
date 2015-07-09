@@ -248,11 +248,11 @@ button.close { font-weight: 100;font-size: 50px;position:absolute;top: 0;right: 
 .panel-popup .divider { width:20px;height:1px;display: inline-block; }
 
 /* TABLE */
-.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th { padding: 8px;color: #727b80; }
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th { padding: 8px;color: #555; }
 .table-hover>tbody>tr:hover { background-color: #f6f7f7; }
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th { border-top: 1px solid #f1f1f1; }
 .table>thead>tr>th { border-bottom: 1px solid #f1f1f1; } 
-.table-lg>tbody>tr>td, .table-lg>tbody>tr>th, .table-lg>tfoot>tr>td, .table-lg>tfoot>tr>th, .table-lg>thead>tr>td, .table-lg>thead>tr>th { padding: 15px 8px;color: #727b80; }
+.table-lg>tbody>tr>td, .table-lg>tbody>tr>th, .table-lg>tfoot>tr>td, .table-lg>tfoot>tr>th, .table-lg>thead>tr>td, .table-lg>thead>tr>th { padding: 15px 8px;color: #555; }
 
 /* NG-TABLE */
 .ng-table th { text-align: left; }

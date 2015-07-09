@@ -3,8 +3,8 @@
   <table class="table table-hover" ng-table="tableParams" template-pagination="custom-pager">
     <tr ng-repeat="game in $data" ng-class="{ active: +($index % 2) === 0}" ng-show="+game.gamesplayed < +game.distance">
       <td data-title="'Start'" sortable="'created_at'">{{ game.created_at | date:'dd.MM.yyyy' }}</td>
-      <td data-title="'Spiller 1'" sortable="'player1'">{{ game.player1 }}<span ng-class="{ 'text-success': +game.player1_wins > +game.player2_wins, 'text-danger': +game.player1_wins < +game.player2_wins }"> ({{ game.player1_wins }})</span></td>
-      <td data-title="'Spiller 2'" sortable="'player2'">{{ game.player2 }}<span ng-class="{ 'text-success': +game.player2_wins > +game.player1_wins, 'text-danger': +game.player2_wins < +game.player1_wins }"> ({{ game.player2_wins }})</span></td>
+      <td data-title="'Spiller 1'" sortable="'player1'"><span ng-class="{ 'text-success': +game.player1_wins > +game.player2_wins, 'text-danger': +game.player1_wins < +game.player2_wins }">{{ game.player1 }} ({{ game.player1_wins }})</span></td>
+      <td data-title="'Spiller 2'" sortable="'player2'"><span ng-class="{ 'text-success': +game.player2_wins > +game.player1_wins, 'text-danger': +game.player2_wins < +game.player1_wins }">{{ game.player2 }} ({{ game.player2_wins }})</span></td>
       <td data-title="'Spilltype'" sortable="'gametype'">{{ game.gametype }}</td>
       <td data-title="'Distanse'" sortable="'distance'">{{ game.distance }}</td>
       <td data-title="'Spilt'"><span class="badge">{{ game.gamesplayed }}</span><small>&nbsp;/&nbsp;{{ game.distance }}</small></td>

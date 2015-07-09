@@ -148,8 +148,25 @@ angular.module('pool.controllers', ['ngTable'])
 
 	}])
 
-	.controller('StatsCtrl', ['$scope', function($scope) {
-		
+	.controller('StatsCtrl', ['$scope', 'ngTableParams', '$filter', '$location', 'getGames', function($scope, ngTableParams, $filter, $location, getGames) {
+		$scope.games = getGames;
+
+		$scope.tableParams = new ngTableParams({
+			page: 1,
+			count: 10,
+			sorting: { created_at: 'desc' }
+		},{
+			total: 0, // length of data
+			getData: function($defer, params) {
+				$location.search(params.url());
+				if (angular.isDefined($scope.games)) {
+					var orderedData = $filter('orderBy')($scope.games, params.orderBy());
+					params.total(orderedData.length);
+					$defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+				}
+			}
+		});
+
 	}])
 
 	.controller('StyleCtrl', ['$scope', function($scope) {

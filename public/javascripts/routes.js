@@ -45,7 +45,12 @@ angular.module('pool.routes', [])
 			.state('stats', {
 				url: '/stats',
 				templateUrl: '/partials/stats.html',
-				controller: 'StatsCtrl'
+				controller: 'StatsCtrl',
+				resolve: {
+					getGames: ['Game', function(Game) {
+						return Game.query().$promise;
+					}]
+				}
 			})
 
 			.state('style', {
