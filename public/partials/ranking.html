@@ -1,0 +1,31 @@
+<div class="col-md-10">
+  <h1 class="page-header">Ranking</h1>
+   <table class="table table-hover" ng-table="tableParams" template-pagination="custom-pager">
+    <tr ng-repeat="player in $data" ng-class="{ active: +($index % 2) === 0}">
+      <td data-title="'Navn'" sortable="'name'">
+        <strong>{{ player.name }}</strong>&nbsp;
+      </td>
+      <td data-title="'Nickname'" sortable="'nickname'">{{ player.nickname }}</td>
+      <td class="text-right" data-title="'Spilt'" sortable="'games'">{{ player.games }}</td>
+    </tr>
+  </table>
+
+</div>
+<div class="col-md-2 text-center">
+	<i class="fa fa-trophy fa-6"></i>
+</div>
+
+<script type="text/ng-template" id="custom-pager" >
+  <div class="text-center margin-t-20">
+    <ul class="pagination pagination-sm">
+      <li ng-class="{'disabled': !page.active}" ng-repeat="page in pages" ng-switch="page.type">
+        <a ng-switch-when="prev" ng-click="params.page(page.number)" href="">&laquo;</a>
+        <a ng-switch-when="first" ng-click="params.page(page.number)" href=""><span ng-bind="page.number"></span></a>
+        <a ng-switch-when="page" ng-click="params.page(page.number)" href=""><span ng-bind="page.number"></span></a>
+        <a ng-switch-when="more" ng-click="params.page(page.number)" href="">&#8230;</a>
+        <a ng-switch-when="last" ng-click="params.page(page.number)" href=""><span ng-bind="page.number"></span></a>
+        <a ng-switch-when="next" ng-click="params.page(page.number)" href="">&raquo;</a>
+      </li>
+    </ul>
+  </div>
+</script>

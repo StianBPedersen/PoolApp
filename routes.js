@@ -32,7 +32,9 @@ module.exports = function(app) {
 
 	app.get('/players', function(req, res) {
 		var players = [];
-		var query = client.query('SELECT userid, name, nickname FROM player ORDER BY userid');
+		db_str = 'SELECT * FROM player ORDER BY name ASC';
+
+		var query = client.query(db_str);
 
 		query.on('error', function(err) { return res.json(error); });
 
@@ -163,18 +165,18 @@ module.exports = function(app) {
 
 /********************************************************************* RESULT ********************************************************************/
 
-	app.post('/results/:gameid', function(req, res) {
-		var obj = {};
-		var query = client.query('INSERT INTO result(gameid, winner) VALUES($1,$2) RETURNING id', [req.params.gameid, req.body.winner]);
+	app.get('/ranking', function(req, res) {
+		var arr = [];
+		var query = client.query('SELECT name, nickname, (SELECT count(0) from game where player1 = userid OR player2 = userid) as games from player');
 
 		query.on('error', function(err) { return res.json(err) });
 
 		query.on('row', function(row, result) {
-			obj = row;
+			arr.push(row);
 		});
 
 		query.on('end', function(result) {
-			return res.json(obj);
+			return res.json(arr);
 			client.end();
 		});
 	});

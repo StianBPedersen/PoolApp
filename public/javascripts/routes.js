@@ -53,4 +53,15 @@ angular.module('pool.routes', [])
 				}
 			})
 
+			.state('ranking', {
+				url: '/ranking',
+				templateUrl: '/partials/ranking.html',
+				controller: 'RankingCtrl',
+				resolve: {
+					getRanking: ['Ranking', function(Ranking) {
+						return Ranking.query().$promise;
+					}]
+				}
+			})
+
 	}]);

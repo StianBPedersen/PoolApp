@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="lib/ng-table/dist/ng-table.min.css" />
 	<link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="css/make.css" />
+	<link rel="shortcut icon" href="favicon.png">
 </head>
 <body>
 
@@ -16,9 +17,10 @@
 	  <div class="container">
 	     <div class="row">
 	      <a class="navbar-brand" ui-sref="index">
-	        Biljard
+	        <img src="img/logo.png" height="38" />
 	      </a>
 	      <ul id="nav" class="pull-right nav navbar-nav">
+	      	<li ui-sref-active="active"><a ui-sref="ranking">Ranking</a></li>
 	      	<li ui-sref-active="active"><a ui-sref="stats">Resultater</a></li>
 	        <li ui-sref-active="active"><a ui-sref="players">Spillere</a></li>
 	        <li ui-sref-active="active"><a ui-sref="gametype">Spilltyper</a></li>

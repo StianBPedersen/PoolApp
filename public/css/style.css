@@ -7,6 +7,12 @@ img { filter: sepia(0.8); }
 input[type="text"], input[type="password"], select { border: 1px solid #ced1d2;box-shadow: inset 0 0 1px 1px #f1f1f1; }
 a { color: #224a42; }
 
+.fa-2 { font-size: 2em;}
+.fa-3 { font-size: 3em;}
+.fa-4 { font-size: 4em;}
+.fa-5 { font-size: 5em;}
+.fa-6 { font-size: 6em;}
+
 .main { min-height:500px;border-radius: 4px; }
 .margin-top { padding-top: 20px;}
 .page-header { margin: 17px 0 20px;}
@@ -15,6 +21,8 @@ a { color: #224a42; }
 	border-color: #fff;
 	background-color: rgba(212,205,198, 1);
 }
+
+.navbar-brand { padding: 5px 0 0 30px }
 
 .navbar-inverse .navbar-nav>li>a {
 	color:#000;
@@ -31,6 +39,7 @@ a { color: #224a42; }
 .table>tbody>tr.active>td, .table>tbody>tr.active>th, .table>tbody>tr>td.active, .table>tbody>tr>th.active, .table>tfoot>tr.active>td, .table>tfoot>tr.active>th, .table>tfoot>tr>td.active, .table>tfoot>tr>th.active, .table>thead>tr.active>td, .table>thead>tr.active>th, .table>thead>tr>td.active, .table>thead>tr>th.active {
 	background-color: rgba(222,222,222,.3);
 }
+.table small { color:#000; }
 
 /* BUTTONS */
 .btn-success, .btn-success.active, .btn-success.focus, .btn-success:active, .btn-success:focus, .btn-success:active:focus { color: #000;background-color: rgba(255,255,255,.2);border-color: #eee;}

@@ -167,7 +167,28 @@ angular.module('pool.controllers', ['ngTable'])
 			}
 		});
 
+	}])
+
+	.controller('RankingCtrl', ['$scope', 'ngTableParams', '$filter', '$location', 'getRanking', function($scope, ngTableParams, $filter, $location, getRanking) {
+		$scope.ranking = getRanking;
+
+		$scope.tableParams = new ngTableParams({
+			page: 1,
+			count: 10,
+			sorting: { created_at: 'desc' }
+		},{
+			total: 0, // length of data
+			getData: function($defer, params) {
+				$location.search(params.url());
+				if (angular.isDefined($scope.ranking)) {
+					var orderedData = $filter('orderBy')($scope.ranking, params.orderBy());
+					params.total(orderedData.length);
+					$defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+				}
+			}
+		});
 	}]);
+		
 
 	
 

@@ -17,9 +17,7 @@ angular.module('pool.services', [])
 		});
 	}])
 
-	.factory('Result', ['$resource', function($resource) {
-		return $resource('/results/:gameid', { gameid:'@gameid' }, {
-			update: { method: 'PUT' }
-		})
+	.factory('Ranking', ['$resource', function($resource) {
+		return $resource('/ranking', {}, {});
 	}]);
 

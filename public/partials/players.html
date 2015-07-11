@@ -6,9 +6,7 @@
         <strong>{{ player.name }}</strong>&nbsp;
         <a data-toggle="modal" data-target="#modaledit" ng-click="updatePlayer(player)"><small><i class="fa fa-edit"></i></small></a>
       </td>
-      <td data-title="'Nick'" sortable="'nickname'">{{ player.nickname }}</td>
-      <td data-title="'Vinn'" sortable="'wins'">{{ player.wins || 0 }}</td>
-      <td data-title="'Tap'" sortable="'lossed'">{{ player.lossed || 0 }}</td>
+      <td data-title="'Nickname'" sortable="'nickname'">{{ player.nickname }}</td>
       <td class="text-right" data-title="'Slett'">
         <a class="text-danger" confirm="removePlayer(player.userid)" confirm-popup-message="Er du sikker på at du vil slette spilleren?"><i class="fa fa-remove"></i></a>
       </td>
