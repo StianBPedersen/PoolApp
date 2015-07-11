@@ -3,7 +3,7 @@ angular.module('pool.controllers', ['ngTable'])
 
 	}])
 
-	.controller('IndexCtrl', ['$scope', 'ngTableParams', '$filter', '$location', 'Game', 'Result', 'getPlayers', 'getTypes', 'getGames', function($scope, ngTableParams, $filter, $location, Game, Result, getPlayers, getTypes, getGames) {
+	.controller('IndexCtrl', ['$scope', 'ngTableParams', '$filter', '$location', 'Game', 'getPlayers', 'getTypes', 'getGames', function($scope, ngTableParams, $filter, $location, Game, getPlayers, getTypes, getGames) {
 		$scope.players = getPlayers;
 		$scope.types = getTypes;
 		$scope.games = getGames;
