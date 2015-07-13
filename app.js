@@ -6,7 +6,7 @@ require('./routes')(app);
 app.use(express.static('public'));
 app.use(morgan('dev'));
 
-var server = app.listen(3000, function() {
+var server = app.listen(5000, function() {
 	var host = server.address().address;
 	var port = server.address().port;
 

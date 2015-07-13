@@ -2,7 +2,7 @@ var pg = require('pg');
 var bodyParser = require('body-parser');
 var dbHelper = require('./db-helper');
 
-var conn = "postgres://pool_usr:pool_usr@localhost/pool"
+var conn = process.env.DATABASE_URL;
 var Client = require('pg').Client;
 
 module.exports = function(app) {
