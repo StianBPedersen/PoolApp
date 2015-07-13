@@ -3,7 +3,7 @@ angular.module('pool.controllers', ['ngTable'])
 
 	}])
 
-	.controller('IndexCtrl', ['$scope', 'ngTableParams', '$filter', '$location', 'Game', 'getPlayers', 'getTypes', 'getGames', function($scope, ngTableParams, $filter, $location, Game, getPlayers, getTypes, getGames) {
+	.controller('IndexCtrl', ['$scope', 'ngTableParams', '$filter', '$location', 'Game', 'getPlayers', 'getTypes', 'getGames', 'Result', function($scope, ngTableParams, $filter, $location, Game, getPlayers, getTypes, getGames, Result) {
 		$scope.players = getPlayers;
 		$scope.types = getTypes;
 		$scope.games = getGames;
@@ -38,14 +38,15 @@ angular.module('pool.controllers', ['ngTable'])
 
 		$scope.populatePlayers = function(obj) {
 			players = [
-				{ userid: obj.player1_id, name: obj.player1  }, 
-				{ userid: obj.player2_id, name: obj.player2  }
+				{ userid: obj.player1_id, name: obj.player1, wins: obj.player1_wins  }, 
+				{ userid: obj.player2_id, name: obj.player2, wins: obj.player2_wins   }
 			];
 
 			$scope.modalobj = {
 				winner: null,
 				players: players,
-				gameid: obj.gameid
+				gameid: obj.gameid,
+				distance: obj.distance
 			};
 		};
 

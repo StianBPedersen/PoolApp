@@ -143,6 +143,17 @@ module.exports = function(app) {
 		});
 	});
 
+	app.put('/games/:gameid', function(req, res) {
+		var query = client.query('UPDATE game set winner = $1, WHERE gameid = $2 RETURNING $2', [req.body.winner, req.params.gameid]);
+
+		query.on('error', function(err) { return res.json(err); });
+
+		query.on('end', function() {
+			return res.json({ userid: req.params.userid });
+			client.end();
+		});
+	})
+
 	app.get('/games', function(req, res) {
 		var games = [];
 		var db_str = dbHelper.getGames();
@@ -163,7 +174,7 @@ module.exports = function(app) {
 
 /********************************************************************* END GAMES ****************************************************************/
 
-/********************************************************************* RESULT ********************************************************************/
+/********************************************************************* RANKING ********************************************************************/
 
 	app.get('/ranking', function(req, res) {
 		var arr = [];
@@ -181,7 +192,24 @@ module.exports = function(app) {
 		});
 	});
 
-/********************************************************************* END RESULT ****************************************************************/
+/********************************************************************* END RANKING ****************************************************************/
+
+app.post('/results/:gameid', function(req, res) {
+	var obj = {};
+	var query = client.query('INSERT INTO result(gameid, winner) VALUES($1,$2) RETURNING id', [req.params.gameid, req.body.winner]);
+
+	query.on('error', function(err) { return res.json(err) });
+
+	query.on('row', function(row, result) {
+		obj = row;
+	});
+
+	query.on('end', function(result) {
+		return res.json(obj);
+		client.end();
+	});
+});
+
 
 }
 
